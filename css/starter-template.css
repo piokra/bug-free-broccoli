@@ -8,3 +8,20 @@ body {
 .hide {
   display: none;
 }
+
+.swag {
+  background-color: red;
+}
+
+.swag:hover {
+  background-color: black;
+}
+
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   overflow: auto !important;
+   width: 100vw;
+   height: 100vh;
+}

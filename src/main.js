@@ -35,7 +35,7 @@
     w = parseInt(w.replace("px", "")) * 0.8;
     canvas.width = w;
     canvas.height = window.innerHeight * 0.8;
-    console.log([canvas.width, canvas.height]);
+    console.log("CanvasSize:" + [canvas.width, canvas.height]);
     return [canvas.width, canvas.height];
   };
 

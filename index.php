@@ -15,13 +15,11 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/starter-template.css" rel="stylesheet">
-    <script type="text/javascript" src="src/bundle.js"></script>
+    </head>
 
-  </head>
+  <body onload="main()">
+    <script type="text/javascript" src="src/lib/util/fullscreen.js"></script>
 
-  <body onload="main()" onresize="resizeCanvas()">
-    <?php
-      include 'php/shaders.php'; ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -45,13 +43,9 @@
 
     <div class="container">
 
-      <div class="starter-template" id = "p_holder">
-        <p class="lead" id="canvas_holder">
-          <canvas style="background-color: red;" id = "gl_canvas">
-        </p>
-      </div>
-
-    </div><!-- /.container -->
+        <?php
+            include 'php/includer.php'; ?>
+    </div>
 
 
   </body>

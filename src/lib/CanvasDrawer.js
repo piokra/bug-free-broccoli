@@ -19,11 +19,11 @@
         program = factory.constructProgramFromSources(GL, fragSource, vertSource);
         console.log("GOODBYE");
         this.program = program;
-        this.triangleArray = [-1.0, 1.0, 1.0, -1.0, 1.0, 1.0];
+        this.triangleArray = [-1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0];
         this.triangleVertex = GL.createBuffer();
         GL.bindBuffer(GL.ARRAY_BUFFER, this.triangleVertex);
         GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(this.triangleArray), GL.STATIC_DRAW);
-        this.triangleFacesArray = [0, 1, 2];
+        this.triangleFacesArray = [0, 1, 2, 0, 1, 3];
         this.triangleFaces = GL.createBuffer();
         GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.triangleFaces);
         GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.triangleFacesArray), GL.STATIC_DRAW);
@@ -32,6 +32,8 @@
         console.log(this.triangleFaces);
         GL.clearColor(0.5, 0.5, 0.5, 0.5);
         this.GL.useProgram(this.program);
+        this.time = GL.getUniformLocation(this.program, "utime");
+        this.timev = 0.0;
       } catch (error1) {
         error = error1;
         console.log(error);
@@ -41,12 +43,14 @@
     CanvasDrawer.prototype.drawFrame = function() {
       var GL;
       GL = this.GL;
+      this.timev = this.timev + 0.01;
       this.GL.viewport(0.0, 0.0, this.canvas.width, this.canvas.height);
       this.GL.clear(this.GL.COLOR_BUFFER_BIT);
       this.GL.bindBuffer(this.GL.ARRAY_BUFFER, this.triangleVertex);
       this.GL.vertexAttribPointer(this.position, 2, this.GL.FLOAT, false, 8, 0);
+      this.GL.uniform1f(this.time, this.timev);
       this.GL.bindBuffer(this.GL.ELEMENT_ARRAY_BUFFER, this.triangleFaces);
-      this.GL.drawElements(this.GL.TRIANGLES, 3, this.GL.UNSIGNED_SHORT, 0);
+      this.GL.drawElements(this.GL.TRIANGLES, 6, this.GL.UNSIGNED_SHORT, 0);
       this.GL.flush();
       return window.requestAnimationFrame((function(_this) {
         return function() {

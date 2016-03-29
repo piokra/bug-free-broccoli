@@ -1,3 +1,13 @@
+  <script type="text/javascript" src="src/bundle.js"></script>
+
+  <div class="starter-template" id = "p_holder">
+    <p class="lead" id="canvas_holder" >
+      <canvas onclick='toggleFullscreen(document.getElementById("canvas_holder","resizeCanvas")); resizeCanvas();' style="background-color: red;" id = "gl_canvas">
+    </p>
+  </div>
+
+
+
 <?php
 
 function printHidden($string,$id)
